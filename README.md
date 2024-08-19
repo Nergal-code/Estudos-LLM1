@@ -23,10 +23,11 @@ Para executar o projeto:
 
 1. Certifique-se de ter o Python instalado em sua máquina.
 2. Copie o arquivo `modelo_linguagem.py` e execute-o usando Python:
+   
     ```bash
     python modelo_linguagem.py
     ```
-3. O script gerará uma frase aleatória com base no texto fornecido.
+4. O script gerará uma frase aleatória com base no texto fornecido.
 
 ## Licença
 
