@@ -1,62 +1,63 @@
 import random
 import itertools
 
-# Sample text input for the "training" phase
-text = """
-Artificial intelligence and machine learning are fields of study that are growing rapidly. 
-The possibilities are endless, and the impact on the future is immense.
-Artificial intelligence is reshaping the way we think, work, and live.
+# Texto de amostra para a fase de "treinamento"
+texto = """
+Inteligência artificial e aprendizado de máquina são campos de estudo que estão crescendo rapidamente. 
+As possibilidades são infinitas, e o impacto no futuro é imenso.
+Inteligência artificial está remodelando a maneira como pensamos, trabalhamos e vivemos.
 """
 
-# Tokenization: splitting the text into words
-words = text.split()
+# Tokenização: dividindo o texto em palavras
+palavras = texto.split()
 
-# Build a trigram frequency dictionary (triplets of words)
-trigrams = {}
+# Construir um dicionário de trigramas (triplas de palavras)
+trigramas = {}
 
-for i in range(len(words) - 2):
-    word_triplet = (words[i], words[i + 1], words[i + 2])
-    if word_triplet in trigrams:
-        trigrams[word_triplet] += 1
+for i in range(len(palavras) - 2):
+    tripla_palavras = (palavras[i], palavras[i + 1], palavras[i + 2])
+    if tripla_palavras in trigramas:
+        trigramas[tripla_palavras] += 1
     else:
-        trigrams[word_triplet] = 1
+        trigramas[tripla_palavras] = 1
 
-# Generate a sentence based on the trigrams
-def generate_sentence(start_word, length=10):
-    # Find all trigrams that start with the given word
-    candidate_trigrams = [triplet for triplet in trigrams if triplet[0] == start_word]
+# Gerar uma frase com base nos trigramas
+def gerar_frase(palavra_inicial, comprimento=10):
+    # Encontrar todos os trigramas que começam com a palavra dada
+    trigramas_candidatos = [tripla for tripla in trigramas if tripla[0] == palavra_inicial]
 
-    if not candidate_trigrams:
-        return f"No possible sentence starting with '{start_word}'"
+    if not trigramas_candidatos:
+        return f"Não é possível gerar uma frase começando com '{palavra_inicial}'"
 
-    current_triplet = random.choices(candidate_trigrams, weights=[trigrams[t] for t in candidate_trigrams])[0]
-    sentence = list(current_triplet[:2])  # Start the sentence with the first two words of the chosen trigram
+    tripla_atual = random.choices(trigramas_candidatos, weights=[trigramas[t] for t in trigramas_candidatos])[0]
+    frase = list(tripla_atual[:2])  # Iniciar a frase com as duas primeiras palavras da tripla escolhida
 
-    for _ in range(length - 2):
-        next_word_candidates = [(triplet[2], trigrams[triplet]) for triplet in trigrams if triplet[:2] == tuple(sentence[-2:])]
+    for _ in range(comprimento - 2):
+        proximas_palavras_candidatas = [(tripla[2], trigramas[tripla]) for tripla in trigramas if tripla[:2] == tuple(frase[-2:])]
         
-        if not next_word_candidates:
+        if not proximas_palavras_candidatas:
             break
         
-        # Weighted random selection of the next word based on frequency
-        next_word = random.choices(
-            [word for word, _ in next_word_candidates],
-            weights=[weight for _, weight in next_word_candidates]
+        # Seleção aleatória ponderada da próxima palavra com base na frequência
+        proxima_palavra = random.choices(
+            [palavra for palavra, _ in proximas_palavras_candidatas],
+            weights=[peso for _, peso in proximas_palavras_candidatas]
         )[0]
         
-        sentence.append(next_word)
+        frase.append(proxima_palavra)
     
-    return ' '.join(sentence)
+    return ' '.join(frase)
 
-# Get user input for the starting word and sentence length
-start_word = input("Enter a starting word: ")
-sentence_length = int(input("Enter the length of the sentence (number of words): "))
+# Obter entrada do usuário para a palavra inicial e comprimento da frase
+palavra_inicial = input("Digite uma palavra inicial: ")
+comprimento_frase = int(input("Digite o comprimento da frase (número de palavras): "))
 
-# Check if the start word is in the list of words
-if start_word not in words:
-    print(f"'{start_word}' not found in text, choosing a random word.")
-    start_word = random.choice(words)
+# Verificar se a palavra inicial está na lista de palavras
+if palavra_inicial not in palavras:
+    print(f"'{palavra_inicial}' não encontrada no texto, escolhendo uma palavra aleatória.")
+    palavra_inicial = random.choice(palavras)
 
-# Generate and print the sentence
-generated_sentence = generate_sentence(start_word, length=sentence_length)
-print("Generated sentence:", generated_sentence)
+# Gerar e imprimir a frase
+frase_gerada = gerar_frase(palavra_inicial, comprimento=comprimento_frase)
+print("Frase gerada:", frase_gerada)
+
