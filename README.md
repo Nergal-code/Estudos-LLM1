@@ -1,37 +1,37 @@
-# Basic Language Model
+# Modelo Básico de Linguagem
 
-This is a very simple language model implemented in Python. It uses tokenization and bigram frequency to generate new sentences based on sample text input.
+Este é um modelo de linguagem muito simples implementado em Python. Ele usa tokenização e frequência de trigramas para gerar novas frases com base no texto de amostra fornecido.
 
-## Project Overview
+## Visão Geral do Projeto
 
-This project demonstrates a basic introduction to building a language model using Python. It takes a sample text, splits it into individual words, and creates a bigram frequency dictionary. Based on this dictionary, it generates a sentence by randomly selecting words.
+Este projeto demonstra uma introdução básica à construção de um modelo de linguagem usando Python. Ele recebe um texto de amostra, divide-o em palavras individuais e cria um dicionário de frequência de trigramas. Com base neste dicionário, o modelo gera uma frase escolhendo palavras de forma ponderada.
 
-## How It Works
+## Como Funciona
 
-1. **Tokenization**: The input text is split into individual words.
-2. **Bigram Frequency**: It builds a frequency table of word pairs (bigrams).
-3. **Sentence Generation**: A new sentence is generated based on the bigrams, with each word randomly chosen based on its previous word.
+1. **Tokenização**: O texto de entrada é dividido em palavras individuais.
+2. **Frequência de Trigramas**: O modelo constrói uma tabela de frequência de triplas de palavras (trigramas).
+3. **Geração de Frases**: Uma nova frase é gerada com base nos trigramas, onde cada palavra é escolhida de forma ponderada de acordo com sua frequência.
 
-## Example
+## Exemplo
 
-Here is an example of how the model might generate a sentence:
+Aqui está um exemplo de como o modelo pode gerar uma frase:
 
 
-## Usage
+## Uso
 
-To run the project:
+Para executar o projeto:
 
-1. Make sure you have Python installed on your machine.
-2. Copy the `language_model.py` file and run it using Python:
+1. Certifique-se de ter o Python instalado em sua máquina.
+2. Copie o arquivo `modelo_linguagem.py` e execute-o usando Python:
     ```bash
-    python language_model.py
+    python modelo_linguagem.py
     ```
-3. The script will generate a random sentence based on the provided text input.
+3. O script gerará uma frase aleatória com base no texto fornecido.
 
-## License
+## Licença
 
-This project is open source under the MIT License.
+Este projeto é de código aberto sob a Licença MIT.
 
 ---
 
-Made by Nergal-code / Caio Lima
+Feito por Nergal-code / Caio Lima
